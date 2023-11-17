@@ -1,11 +1,12 @@
 import { Card, CardFooter, Image, Text } from "@chakra-ui/react";
-import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io"
+import { Rating } from "./Rating";
 
 interface AlbumCardProps {
 	title: string
+	rating: number
 }
 
-export function AlbumCard({title}: AlbumCardProps) {
+export function AlbumCard({title, rating}: AlbumCardProps) {
 
 	return (
 		<Card borderRadius='md' >
@@ -15,14 +16,8 @@ export function AlbumCard({title}: AlbumCardProps) {
 					src='https://placehold.co/600x400'
 				/>
 			<Text m='5px' as='samp'>Nome do Artista</Text>
-			<CardFooter
-				justify='space-between'
-			>
-				<IoMdStar />
-				<IoMdStar />
-				<IoMdStar />
-				<IoMdStarHalf />
-				<IoMdStarOutline />
+			<CardFooter>
+				<Rating value={rating} />
 			</CardFooter>
 		</Card>
 	)

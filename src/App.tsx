@@ -1,4 +1,6 @@
 import { Grid, GridItem } from '@chakra-ui/react'
+import { Sidebar } from './components/sidebar/SidebarContainer'
+import { CardGrid } from './components/cards/CardGrid'
 
 function App() {
 
@@ -9,8 +11,10 @@ function App() {
 			gridTemplateRows='100vh'
 		>
 			<GridItem  area='sidebar'>
+				<Sidebar />
 			</GridItem>
-			<GridItem area='content'>
+			<GridItem  area='content'>
+				<CardGrid />
 			</GridItem>
 		</Grid>
   )

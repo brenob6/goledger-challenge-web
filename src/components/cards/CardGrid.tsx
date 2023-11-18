@@ -1,6 +1,6 @@
 import { Box, Grid, Text } from '@chakra-ui/react'
 import { AlbumCard } from './AlbumCard';
-import { useRequest } from '../hooks/useRequest';
+import { useRequest } from '../../hooks/useRequest';
 
 export function CardGrid() {
 

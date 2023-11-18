@@ -1,19 +1,24 @@
-import { Image, Card, CardBody, Circle, Text } from "@chakra-ui/react";
+import { Image, Card, Text, Center } from "@chakra-ui/react";
 
-export function SongCard() {
+interface SongCardProps {
+	title: string;
+	explicit: boolean;
+}
+
+export function SongCard({title, explicit} : SongCardProps) {
 	return (
 		<Card borderRadius='md'>
-				<Circle >
-					<Image
-						src='https://placehold.co/600x400'
-						objectFit='cover'
-						borderRadius='full'
-						w='180px'
-						h='180px'
-
-					/>
-				</Circle>
-			<Text m='5px' as='b'> Nome do Artista</Text>
+			<Center>
+				<Image
+					mt={3}
+					src='https://placehold.co/600x400'
+					objectFit='cover'
+					borderRadius='full'
+					w='180px'
+					h='180px'
+				/>
+			</Center>
+			<Text as='b' align='center' w='full' m='5px' >{title}</Text>
 		</Card>
 	)
 }

@@ -2,7 +2,8 @@ import { Box, Grid, Text } from '@chakra-ui/react'
 import { AlbumCard } from './AlbumCard';
 import { useRequest } from '../../hooks/useRequest';
 
-export function CardGrid() {
+
+export function CardGridAlbum() {
 
 	const { data, error, isLoading } = useRequest("/query/search", "album");
 	

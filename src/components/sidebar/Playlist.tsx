@@ -2,8 +2,11 @@ import { useRequest } from '../../hooks/useRequest'
 import { PlaylistButton } from './PlaylistButton'
 import { VStack } from '@chakra-ui/react'
 
+interface PlaylistPros {
+	isCollapsed: boolean
+}
 
-export function Playlist() {
+export function Playlist({ isCollapsed }: PlaylistPros) {
 
 	const { data, error, isLoading } = useRequest("/query/search", "playlist");
 
@@ -11,6 +14,7 @@ export function Playlist() {
 		<VStack spacing={0}>
 			{!isLoading && !error && data.map(item => (
 				<PlaylistButton
+					isCollapsed={isCollapsed}
 					key={item['@key']}
 					_key={item['@key']}
 				/>

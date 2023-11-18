@@ -6,7 +6,11 @@ interface PlaylistButtonProps {
 	_key: string
 }
 
-export function PlaylistButton({ _key }: PlaylistButtonProps) {
+interface PlaylistButtonProps {
+	isCollapsed: boolean
+}
+
+export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { data, error, isLoading } = useAsset("playlist", _key)	
 
@@ -17,10 +21,10 @@ export function PlaylistButton({ _key }: PlaylistButtonProps) {
 			justifyContent='left' 
 			borderRadius={0}
 			leftIcon={<Avatar name={data?.name} size={"sm"}/>}
-			w='full'
+			w={!isCollapsed ? '256px' : '70'}
 			onClick={onOpen}
 		>
-			{data?.name}
+			{!isCollapsed && data?.name}
 		</Button>
 
 		<Modal

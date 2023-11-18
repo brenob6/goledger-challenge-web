@@ -1,15 +1,19 @@
 import { Avatar, Button } from '@chakra-ui/react'
 
-export function PlaylistItem() {
+interface PlayListItemProps {
+	name: string
+}
+
+export function PlaylistItem({ name }: PlayListItemProps) {
 	return (
 		<Button 
 			colorScheme='teal'
 			justifyContent='left' 
 			borderRadius={0}
-			leftIcon={<Avatar name='Michael Jackson' size={"sm"}/>}
+			leftIcon={<Avatar name={name} size={"sm"}/>}
 			w='full'
 		>
-			Nome da playlist
+			{name}
 		</Button>
 	)
 }

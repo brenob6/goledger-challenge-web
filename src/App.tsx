@@ -8,8 +8,7 @@ function App() {
   return (
 		<Grid
 			templateAreas={`"sidebar content"`}
-			gridTemplateColumns='320px 1fr'
-			gridTemplateRows='100vh'
+			gridTemplateColumns='min-content 1fr'
 		>
 			<GridItem  area='sidebar'>
 				<Sidebar />

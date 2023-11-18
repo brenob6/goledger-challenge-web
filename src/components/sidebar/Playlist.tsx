@@ -8,7 +8,7 @@ export function Playlist() {
 	const { data, error, isLoading } = useRequest("/query/search", "playlist");
 
 	return(
-		<VStack spacing={0.5}>
+		<VStack spacing={0}>
 			{!isLoading && !error && data.map(item => (
 				<PlaylistButton
 					key={item['@key']}

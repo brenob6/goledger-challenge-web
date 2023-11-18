@@ -15,6 +15,7 @@ export function CardGrid() {
 						key={item['@key']}
 						title={item.title}
 						rating={item.rating}
+						releaseDate={item.releaseDate}
 					/>
 				))}
 			</Grid>

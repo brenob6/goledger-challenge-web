@@ -1,12 +1,22 @@
-import { Card, CardFooter, Image, Text } from "@chakra-ui/react";
+import { Card, CardFooter, Image, Text, VStack } from "@chakra-ui/react";
 import { Rating } from "./Rating";
 
 interface AlbumCardProps {
 	title: string
 	rating: number
+	releaseDate: string
 }
 
-export function AlbumCard({title, rating}: AlbumCardProps) {
+
+
+export function AlbumCard({title, rating, releaseDate}: AlbumCardProps) {
+
+	const dateWithoutZ = releaseDate.replace("Z", "");
+	const date = new Date(dateWithoutZ)
+
+	const day = date.getDate().toString().padStart(2, "0");
+	const month = (date.getMonth() + 1).toString().padStart(2, "0");
+	const year = date.getFullYear();
 
 	return (
 		<Card borderRadius='md' >
@@ -17,7 +27,11 @@ export function AlbumCard({title, rating}: AlbumCardProps) {
 				/>
 			<Text m='5px' as='samp'>Nome do Artista</Text>
 			<CardFooter>
-				<Rating value={rating} />
+				<VStack w='full'>
+					<Rating value={rating} />
+
+					<Text as='sup' align='right' w='full' mt={3}>{`${day}/${month}/${year}`}</Text>
+				</VStack>
 			</CardFooter>
 		</Card>
 	)

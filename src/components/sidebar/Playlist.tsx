@@ -9,10 +9,10 @@ export function Playlist() {
 
 	return(
 		<VStack spacing={0.5}>
-			{!isLoading && data.map(item => (
+			{!isLoading && !error && data.map(item => (
 				<PlaylistButton
 					key={item['@key']}
-					name={item.name}
+					_key={item['@key']}
 				/>
 			))}
 		</VStack>

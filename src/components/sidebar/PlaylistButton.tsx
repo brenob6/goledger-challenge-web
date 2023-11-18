@@ -14,7 +14,6 @@ export function PlaylistButton({ _key }: PlaylistButtonProps) {
 		<>
 		<Button 
 			isLoading={isLoading}
-			colorScheme='teal'
 			justifyContent='left' 
 			borderRadius={0}
 			leftIcon={<Avatar name={data?.name} size={"sm"}/>}

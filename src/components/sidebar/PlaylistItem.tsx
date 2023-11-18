@@ -1,19 +1,18 @@
-import { Avatar, Button } from '@chakra-ui/react'
+import { Box, Flex, Icon, Text, VStack } from "@chakra-ui/react";
+import { FaMusic } from "react-icons/fa6"
+import { BsFillExplicitFill } from "react-icons/bs"
 
-interface PlayListItemProps {
-	name: string
-}
-
-export function PlaylistItem({ name }: PlayListItemProps) {
-	return (
-		<Button 
-			colorScheme='teal'
-			justifyContent='left' 
-			borderRadius={0}
-			leftIcon={<Avatar name={name} size={"sm"}/>}
-			w='full'
-		>
-			{name}
-		</Button>
+export function PlaylistItem() {
+	return(
+		
+		<Flex justifyContent='start' alignItems='center' gap={3}>
+			<Icon as={FaMusic}/>
+			<VStack alignItems='left'>
+				<Text>Nome da musica</Text>
+				<Text as='sup'>Nome do Artista</Text>
+			</VStack>
+			<Icon as={BsFillExplicitFill} boxSize={3} mt="auto"/>
+			<Text ml={3}>Nome do album</Text>
+		</Flex>
 	)
 }

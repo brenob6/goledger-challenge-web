@@ -3,6 +3,7 @@ import { PlaylistItem } from './PlaylistItem'
 import { useAsset } from '../../hooks/useAsset'
 import { useRef, useState } from 'react'
 import { api } from '../../services/api'
+import { useSWRConfig } from 'swr'
 
 interface PlaylistButtonProps {
 	_key: string
@@ -12,20 +13,23 @@ interface PlaylistButtonProps {
 	isCollapsed: boolean
 }
 
-function deletePlaylist(name: string) {
-	api.post('/invoke/deleteAsset', {
-		key: {
-			"@assetType": "playlist",
-			name
-		}
-	})
-}
-
 export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { data, error, isLoading } = useAsset("playlist", _key)	
+	const { mutate } = useSWRConfig()
 
 	const menuButtonRef = useRef()
+
+	async function deletePlaylist(name: string) {
+		await api.post('/invoke/deleteAsset', {
+			key: {
+				"@assetType": "playlist",
+				name
+			}
+		}).then(async() => {
+			await mutate(["/query/search", "playlist"]);
+		})
+	}
 
 	return (
 		<>

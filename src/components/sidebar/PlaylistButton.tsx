@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 interface PlaylistButtonProps {
 	_key: string
-}
-
-interface PlaylistButtonProps {
 	isCollapsed: boolean
 }
 

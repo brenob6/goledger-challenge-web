@@ -1,4 +1,4 @@
-import { Button, Input, Stack, Text, Textarea } from "@chakra-ui/react"
+import { Button, Input, Stack, Text, Textarea, useToast } from "@chakra-ui/react"
 import { api } from "../../services/api"
 import { useForm } from "react-hook-form";
 
@@ -10,6 +10,9 @@ interface Inputs {
 export function PlaylistForm() {
 
 	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+
+	const toast = useToast()
+
 	function onSubmit({ name, description }: Inputs) {
 		api.post('/invoke/createAsset', {
 			asset: [
@@ -19,11 +22,19 @@ export function PlaylistForm() {
 					description 
 				}
 			]
-		}).then(res => {
-				console.log(res)
-		}).catch(err => {
-			console.log(err)
-		});
+		})
+		.then(() => toast({
+			title:"Sucesso",
+			status: 'success',
+			description: "Uma nova playlist foi criada",
+			duration: 3000,
+		}))
+		.catch(() => toast({
+			title:"Falha",
+			status: "error",
+			description: "Ocorreu um erro =(",
+			duration: 3000
+		}))
 	}
 
 	return (
@@ -33,7 +44,7 @@ export function PlaylistForm() {
 				<Input {...register('name', {required: true})}/>
 				<Text>Descrição:</Text>
 				<Textarea {...register('description')}/>
-				<Button type="submit">Criar Playlist</Button>
+				<Button type="submit" colorScheme="blue">Criar Playlist</Button>
 				<Button type='reset' colorScheme="red">Cancelar</Button>
 			</Stack>
 		</form>

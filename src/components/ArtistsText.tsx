@@ -2,21 +2,31 @@ import { HStack, Skeleton, Text, TextProps } from "@chakra-ui/react";
 import { useAsset } from "../hooks/useAsset";
 
 interface ArtistTextProps {
-	_key: Object[]
+	artists?: Array<any>
 	rest?: TextProps
+	isLoading: boolean
 }
 
-export function ArtistsText({ _key, ...rest }: ArtistTextProps) {
+interface ArtistProps {
+	artist: string
+}
 
-	const rtr = _key.map((item: any) => {
-				const { data, error, isLoading } = useAsset("artist", item['@key'])
-				return (
-					<Text {...rest}>{data?.name}</Text>
-				)
-			})
+function Artist({ artist }: ArtistProps) {
+	const { data, error, isLoading } = useAsset("artist", artist)
+
+	return(
+		<Text>{data?.name}</Text>
+	)
+}
+
+export function ArtistsText({ artists, isLoading, ...rest }: ArtistTextProps) {
 
 	return (
-		<HStack>{rtr}</HStack>
+		<Skeleton isLoaded={!isLoading}>
+			<HStack>{artists?.map((artist, index) => (
+				<Artist key={index+"artist"} artist={artist['@key']} />
+			))}</HStack>
+		</Skeleton>
 	)
 	
 }

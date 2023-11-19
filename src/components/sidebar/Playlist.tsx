@@ -12,7 +12,7 @@ export function Playlist({ isCollapsed }: PlaylistPros) {
 
 	return(
 		<VStack spacing={0}>
-			{!isLoading && !error && data.map(item => (
+			{!isLoading && !error && data.map((item: any) => (
 				<PlaylistButton
 					isCollapsed={isCollapsed}
 					key={item['@key']}

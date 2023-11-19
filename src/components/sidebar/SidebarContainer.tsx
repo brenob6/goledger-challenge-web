@@ -19,6 +19,7 @@ export function Sidebar() {
 			top={0}
 			h='100vh'
 			position='sticky'
+			boxShadow='md'
 			>
 		<HStack>
 			<Icon 

@@ -3,6 +3,7 @@ import { FaMusic } from "react-icons/fa6"
 import { BsFillExplicitFill } from "react-icons/bs"
 import { useAsset } from "../../hooks/useAsset";
 import { AlbumText } from "../AlbumText";
+import { IoMdAdd } from "react-icons/io";
 
 interface PlaylistItemProps {
 	_key: string
@@ -32,6 +33,7 @@ export function PlaylistItem({_key}: PlaylistItemProps) {
 			</VStack>
 			<Spacer />
 			<AlbumText _key={_key}/>
+			<Icon as={IoMdAdd} boxSize={6} />
 		</Flex>
 		<Divider />
 		</>

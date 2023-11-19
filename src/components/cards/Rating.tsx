@@ -30,7 +30,7 @@ export function Rating({ value }: RatingProps) {
 
 	return (
 		<HStack justifyContent='space-between' w='full'>	
-			{starStack.map((item ) => (<Icon key={key} w='30px' h='30px' as={item} />))}
+			{starStack.map((item ) => (<Icon as={item} color='yellow.500' key={key} w='30px' h='30px'  />))}
 		</HStack>
 	)
 }

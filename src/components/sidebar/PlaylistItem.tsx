@@ -21,14 +21,14 @@ export function PlaylistItem({_key}: PlaylistItemProps) {
 			padding={2}
 			_hover={{bg:'whiteAlpha.50'}}
 		>
-			<Icon as={FaMusic}/>
+			<Icon as={FaMusic} boxSize={6} mx={2}/>
 			<VStack alignItems='left'>
 				<Text>
 					{data?.explicit && <Icon as={BsFillExplicitFill} boxSize={3}/>}
 					{" "}
 					{data?.title}
 				</Text>
-				<Text as='sup'> Nome do Artista </Text>
+				<Text fontSize='sm'> Nome do Artista </Text>
 			</VStack>
 			<Spacer />
 			<AlbumText _key={_key}/>

@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { AlbumPage } from "./pages/AlbumPage"
 import { Layout } from "./Layout"
 import { PlaylistPage } from "./pages/PlaylistPage"
 import { SongPage } from "./pages/SongPage"

@@ -3,14 +3,17 @@ import { FaMusic } from "react-icons/fa6"
 import { BsFillExplicitFill } from "react-icons/bs"
 import { useAsset } from "../../hooks/useAsset";
 import { AlbumText } from "../AlbumText";
-import { IoMdAdd } from "react-icons/io";
+import { AddMusicButton } from "../AddMusicButton";
+import { ArtistsText } from "../ArtistsText";
 
 interface PlaylistItemProps {
 	_key: string
 }
 
-export function PlaylistItem({_key}: PlaylistItemProps) {
+export function PlaylistItem({_key }: PlaylistItemProps) {
+
 	const { data, error, isLoading } = useAsset("song", _key)	
+
 	return(
 		<>
 		<Flex 
@@ -29,11 +32,11 @@ export function PlaylistItem({_key}: PlaylistItemProps) {
 					{" "}
 					{data?.title}
 				</Text>
-				<Text fontSize='sm'> Nome do Artista </Text>
+				<ArtistsText artists={data?.artists} isLoading={isLoading}/>
 			</VStack>
 			<Spacer />
 			<AlbumText _key={_key}/>
-			<Icon as={IoMdAdd} boxSize={6} />
+			<AddMusicButton artists={data?.artists} title={data?.title}/>
 		</Flex>
 		<Divider />
 		</>

@@ -8,11 +8,9 @@ export function SongPage() {
 
 	const { data, error, isLoading } = useRequest("/query/search", "song");
 
-	console.log(data)
-
 	return (
 		<VStack alignItems='left'>
-			<Text as='b' fontSize='4xl'>{data?.name}</Text>
+			<Text as='b' fontSize='4xl'>Todas Músicas</Text>
 			{!isLoading && !error && data.map((item: any) => (
 				<PlaylistItem key={item['@key']} _key={item['@key']}/>
 			))}

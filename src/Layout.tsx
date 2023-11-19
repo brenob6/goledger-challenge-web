@@ -11,7 +11,7 @@ export function Layout() {
 			<GridItem  area='sidebar'>
 				<Sidebar />
 			</GridItem>
-			<GridItem  area='content'>
+			<GridItem  area='content' px={5} >
 				<Outlet />
 			</GridItem>
 		</Grid>

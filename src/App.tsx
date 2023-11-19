@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { AlbumPage } from "./pages/AlbumPage"
 import { Layout } from "./Layout"
+import { PlaylistPage } from "./pages/PlaylistPage"
+import { SongPage } from "./pages/SongPage"
 
 function App() {
 
@@ -8,7 +10,8 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="" element={<AlbumPage />}/>
+					<Route path="" element={<SongPage />}/>
+					<Route path="playlist/:_key" element={<PlaylistPage />}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

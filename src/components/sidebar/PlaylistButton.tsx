@@ -1,9 +1,9 @@
-import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, VStack, useDisclosure } from '@chakra-ui/react'
-import { PlaylistItem } from './PlaylistItem'
+import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { useAsset } from '../../hooks/useAsset'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { api } from '../../services/api'
 import { useSWRConfig } from 'swr'
+import { useNavigate } from 'react-router-dom'
 
 interface PlaylistButtonProps {
 	_key: string
@@ -14,9 +14,10 @@ interface PlaylistButtonProps {
 }
 
 export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
-	const { isOpen, onOpen, onClose } = useDisclosure()
+
 	const { data, error, isLoading } = useAsset("playlist", _key)	
 	const { mutate } = useSWRConfig()
+	const navigate = useNavigate()
 
 	const menuButtonRef = useRef()
 
@@ -48,8 +49,11 @@ export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 			justifyContent='left' 
 			borderRadius={0}
 			leftIcon={<Avatar name={data?.name} size={"sm"}/>}
+			
 			w={!isCollapsed ? '256px' : '70'}
-			onClick={onOpen}
+			onClick={() => {
+				navigate(`/playlist/${_key}`)
+			}}
 			onContextMenu={(e) => {
 					e.preventDefault()
 					menuButtonRef.current?.click()
@@ -57,24 +61,6 @@ export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 		>
 			{!isCollapsed && data?.name}
 		</Button>
-
-		<Modal
-			isOpen={isOpen}
-			onClose={onClose}
-			size='xl'
-		>
-			<ModalOverlay />
-			<ModalContent>
-				<ModalHeader>{data?.name}</ModalHeader>
-				<ModalBody>
-					<VStack alignItems='left'>
-						{!isLoading && !error && data.songs?.map(item => (
-							<PlaylistItem key={item['@key']} _key={item['@key']}/>
-						))}
-					</VStack>
-				</ModalBody>
-			</ModalContent>
-		</Modal>
 		</>
 	)
 }

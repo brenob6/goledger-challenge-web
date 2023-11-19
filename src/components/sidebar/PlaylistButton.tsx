@@ -1,4 +1,4 @@
-import { Avatar, Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Skeleton, VStack, useDisclosure } from '@chakra-ui/react'
+import { Avatar, Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, VStack, useDisclosure } from '@chakra-ui/react'
 import { PlaylistItem } from './PlaylistItem'
 import { useAsset } from '../../hooks/useAsset'
 

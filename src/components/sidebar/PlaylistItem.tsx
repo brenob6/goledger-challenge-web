@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, HStack, Icon, Spacer, Text, VStack } from "@chakra-ui/react";
+import { Divider, Flex, Icon, Spacer, Text, VStack } from "@chakra-ui/react";
 import { FaMusic } from "react-icons/fa6"
 import { BsFillExplicitFill } from "react-icons/bs"
 import { useAsset } from "../../hooks/useAsset";

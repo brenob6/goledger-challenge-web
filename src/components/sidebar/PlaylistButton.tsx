@@ -1,6 +1,8 @@
-import { Avatar, Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, VStack, useDisclosure } from '@chakra-ui/react'
+import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, VStack, useDisclosure } from '@chakra-ui/react'
 import { PlaylistItem } from './PlaylistItem'
 import { useAsset } from '../../hooks/useAsset'
+import { useRef, useState } from 'react'
+import { api } from '../../services/api'
 
 interface PlaylistButtonProps {
 	_key: string
@@ -10,12 +12,33 @@ interface PlaylistButtonProps {
 	isCollapsed: boolean
 }
 
+function deletePlaylist(name: string) {
+	api.post('/invoke/deleteAsset', {
+		key: {
+			"@assetType": "playlist",
+			name
+		}
+	})
+}
+
 export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { data, error, isLoading } = useAsset("playlist", _key)	
 
+	const menuButtonRef = useRef()
+
 	return (
 		<>
+		<Menu direction='ltr'>
+		<HStack w='full' justifyContent='right'> 
+			<MenuButton as={Box} bg='red'  ref={menuButtonRef} />
+		</HStack>
+			<MenuList>
+				<MenuItem>Renomear</MenuItem>
+				<MenuItem onClick={() => deletePlaylist(data?.name)}>Deletar</MenuItem>
+			</MenuList>
+		</Menu>
+
 		<Button 
 			isLoading={isLoading}
 			justifyContent='left' 
@@ -23,6 +46,10 @@ export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 			leftIcon={<Avatar name={data?.name} size={"sm"}/>}
 			w={!isCollapsed ? '256px' : '70'}
 			onClick={onOpen}
+			onContextMenu={(e) => {
+					e.preventDefault()
+					menuButtonRef.current?.click()
+				}}
 		>
 			{!isCollapsed && data?.name}
 		</Button>

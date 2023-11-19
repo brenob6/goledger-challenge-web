@@ -1,4 +1,5 @@
 import { HStack, Icon } from "@chakra-ui/react";
+import { useId } from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 
 interface RatingProps {
@@ -8,6 +9,8 @@ interface RatingProps {
 export function Rating({ value }: RatingProps) {
 	const startRate = value/2;
 	const starStack = [];
+
+	const key = useId()
 
 	const fullStar = Math.floor(startRate);
 	const halfStar = value%2;
@@ -27,7 +30,7 @@ export function Rating({ value }: RatingProps) {
 
 	return (
 		<HStack justifyContent='space-between' w='full'>	
-			{starStack.map((item, index) => (<Icon key={index} w='30px' h='30px' as={item} />))}
+			{starStack.map((item ) => (<Icon key={key} w='30px' h='30px' as={item} />))}
 		</HStack>
 	)
 }

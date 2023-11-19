@@ -35,7 +35,7 @@ export function PlaylistItem({_key }: PlaylistItemProps) {
 				<ArtistsText artists={data?.artists} isLoading={isLoading}/>
 			</VStack>
 			<Spacer />
-			<AlbumText _key={_key}/>
+			<AlbumText _key={data?.album['@key']}/>
 			<AddMusicButton artists={data?.artists} title={data?.title}/>
 		</Flex>
 		<Divider />

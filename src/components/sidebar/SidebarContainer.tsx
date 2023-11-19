@@ -1,7 +1,7 @@
-import { Button, Flex, HStack, Icon, Spacer, Text, useBoolean } from '@chakra-ui/react'
-import { IoIosAddCircle } from 'react-icons/io';
+import { Flex, HStack, Icon, Spacer, Text, useBoolean } from '@chakra-ui/react'
 import { Playlist } from './Playlist'
 import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarRightCollapseFilled } from "react-icons/tb"
+import { AddPlaylistButton } from './AddPlaylistButton';
 
 export function Sidebar() {
 
@@ -29,13 +29,7 @@ export function Sidebar() {
 		</HStack>
 		<Playlist isCollapsed={isCollapsed} />
 		<Spacer />
-		<Button 
-			justifyContent='left'
-			verticalAlign='center'
-			leftIcon={<Icon as={IoIosAddCircle} boxSize='32px' />}
-			colorScheme='blue'
-			borderBottomRadius={0}
-		>{!isCollapsed && "Nova Playlist"}</Button>
+		<AddPlaylistButton isCollapsed={isCollapsed}/>
 		</Flex>
 	);
 }

@@ -10,7 +10,7 @@ export function AlbumPage() {
 		<Box m={3}>
 			<Text as='b' fontSize='4xl'>Álbuns</Text>	
 			<Grid gap={1} templateColumns='repeat(auto-fill, minmax(224px, 1fr))'> 
-				{!isLoading && data.map(item => (
+				{!isLoading && !error && data.map((item: any) => (
 					<AlbumCard
 						key={item['@key']}
 						title={item.title}

@@ -3,7 +3,6 @@ import { useAsset } from "../hooks/useAsset";
 
 interface ArtistTextProps {
 	artists?: Array<any>
-	rest?: TextProps
 	isLoading: boolean
 }
 
@@ -15,11 +14,11 @@ function Artist({ artist }: ArtistProps) {
 	const { data, error, isLoading } = useAsset("artist", artist)
 
 	return(
-		<Text>{data?.name}</Text>
+		<Text as='u'>{data?.name}</Text>
 	)
 }
 
-export function ArtistsText({ artists, isLoading, ...rest }: ArtistTextProps) {
+export function ArtistsText({ artists, isLoading }: ArtistTextProps) {
 
 	return (
 		<Skeleton isLoaded={!isLoading}>

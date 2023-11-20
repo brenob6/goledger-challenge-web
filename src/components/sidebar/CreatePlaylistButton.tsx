@@ -2,6 +2,7 @@ import { Button, Icon, Input, Modal, ModalBody, ModalContent, ModalOverlay, Stac
 import { IoIosAddCircle } from "react-icons/io";
 import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
+import { mutate } from "swr";
 
 interface CreatePlaylistButtonProps {
 	isCollapsed: boolean
@@ -27,12 +28,16 @@ export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps)
 				}
 			]
 		})
-		.then(() => toast({
-			title:"Sucesso",
-			status: 'success',
-			description: "Uma nova playlist foi criada",
-			duration: 3000,
-		}))
+		.then(() => {
+			toast({
+				title:"Sucesso",
+				status: 'success',
+				description: "Uma nova playlist foi criada",
+				duration: 3000,
+			});
+			mutate(["/query/search","playlist"])	
+			onClose()
+		})
 		.catch(() => toast({
 			title:"Falha",
 			status: "error",

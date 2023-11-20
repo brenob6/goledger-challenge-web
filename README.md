@@ -26,3 +26,43 @@ Tip: execute each operation in the Swagger for information on payload format and
 ## Complete the challenge
 
 To complete the challenge, you must send us the link to your forked repository with the code of your application. Please, provide instructions to execute the code.
+
+## How to run
+
+Install the dependences
+
+```
+yarn
+```
+
+To run
+
+```
+yarn dev
+```
+
+or
+
+```
+npm install
+```
+
+```
+npm run dev
+```
+
+## Features
+
+![Tour](./assets/tour.gif)
+
+**Criar Playlist**
+
+![Criar Playlist](./assets/newPlaylist.gif)
+
+**Adicionar e remover músicas nas playlists**
+
+![Adicionar e remover músicas](./assets/addRemoveSong.gif)
+
+**Deletar playlist**
+
+![Deletar Playlist](./assets/deletePlaylist.gif)

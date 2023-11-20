@@ -1,4 +1,4 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack, useColorMode } from "@chakra-ui/react";
 import { useAsset } from "../hooks/useAsset";
 import { useParams } from "react-router-dom";
 import { SongCard } from "../components/SongCard";
@@ -8,13 +8,18 @@ export function PlaylistPage() {
 	
 	const { _key } = useParams()
 	const { data, error, isLoading } = useAsset("song", _key)	
+	const { colorMode } = useColorMode()
 
 	return (
 		<>
 			<Box 
 				top={0}
 				position='sticky'
-				bgGradient={'linear-gradient(180deg, blue.500 0%, blue.100 100%)'}
+				bgGradient={
+					colorMode === 'light'?
+						'linear-gradient(180deg, blue.300 0%, blue.50 100%)':
+						'linear-gradient(180deg, blackAlpha.500 0%, blackAlpha.50 500%)'
+				}
 				p={5}
 				mb={2}
 				zIndex={1}

@@ -29,6 +29,9 @@ To complete the challenge, you must send us the link to your forked repository w
 
 ## How to run
 
+Before run rename the `.env.sample` file to `.env` and change the `VITE_API_URL` to correspondent
+api url.
+
 Install the dependences
 
 ```

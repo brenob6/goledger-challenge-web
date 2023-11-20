@@ -10,9 +10,7 @@ interface AlbumTitleProps {
 
 export function AlbumText({ _key, ...rest }: AlbumTitleProps) {
 
-	const { data, error, isLoading} = useAsset("album", _key)
-
-	console.log(_key)
+	const { data, isLoading} = useAsset("album", _key)
 
 	return (
 		<Skeleton isLoaded={!isLoading}>

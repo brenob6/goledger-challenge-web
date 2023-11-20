@@ -1,8 +1,7 @@
-import { IconButton, Menu, MenuButton, MenuGroup, MenuItem, MenuList, useToast } from "@chakra-ui/react";
+import { IconButton, Menu, MenuButton, MenuItem, MenuList, useToast } from "@chakra-ui/react";
 import { IoMdAdd } from "react-icons/io";
 import { api } from "../services/api";
 import { usePlaylistContext } from "../hooks/usePlaylistContext";
-import { useAsset } from "../hooks/useAsset";
 
 interface AddMusicButtonProps {
 	artists: string[]

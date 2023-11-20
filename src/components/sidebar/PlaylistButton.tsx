@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Progress, useBoolean } from '@chakra-ui/react'
+import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList, useBoolean } from '@chakra-ui/react'
 import { useAsset } from '../../hooks/useAsset'
 import { useRef } from 'react'
 import { api } from '../../services/api'
@@ -12,7 +12,7 @@ interface PlaylistButtonProps {
 
 export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 
-	const { data, error, isLoading: isOnRequest } = useAsset("playlist", _key)	
+	const { data, isLoading: isOnRequest } = useAsset("playlist", _key)	
 	const { mutate } = useSWRConfig()
 	const navigate = useNavigate()
 	const [ isLoading, setLoading ] = useBoolean()

@@ -15,7 +15,7 @@ interface Inputs {
 export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps) {
 
 	const { onOpen, onClose, isOpen } = useDisclosure()
-	const { register, reset, handleSubmit, formState: { errors } } = useForm<Inputs>()
+	const { register, reset, handleSubmit } = useForm<Inputs>()
 	const toast = useToast()
 	const [ isLoading, setLoading ] = useBoolean()
 

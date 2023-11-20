@@ -1,4 +1,4 @@
-import { Button, HStack, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Skeleton, Text, TextProps, useDisclosure } from "@chakra-ui/react";
+import { Button, HStack, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Skeleton, Text, useDisclosure } from "@chakra-ui/react";
 import { useAsset } from "../hooks/useAsset";
 
 interface ArtistTextProps {
@@ -11,12 +11,14 @@ interface ArtistProps {
 }
 
 function Artist({ artist }: ArtistProps) {
-	const { data, error, isLoading } = useAsset("artist", artist)
+	const { data, isLoading } = useAsset("artist", artist)
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	return(
 		<>
+		<Skeleton isLoaded={!isLoading}>
 		<Text as='u' _hover={{color:'blue.200'}} cursor='pointer' onClick={onOpen}>{data?.name}</Text>
+		</Skeleton>
 		<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />
 				<ModalContent>

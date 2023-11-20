@@ -1,4 +1,4 @@
-import { Button, Flex, HStack, Icon, IconButton, Spacer, Text, useBoolean, useColorMode } from '@chakra-ui/react';
+import { Button, Flex, HStack, Icon, Spacer, Text, useBoolean, useColorMode } from '@chakra-ui/react';
 import { Playlist } from './Playlist';
 import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarRightCollapseFilled } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';

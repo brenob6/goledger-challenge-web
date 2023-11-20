@@ -18,7 +18,7 @@ export function PlaylistPage() {
 				bgGradient={
 					colorMode === 'light'?
 						'linear-gradient(180deg, blue.300 0%, blue.50 100%)':
-						'linear-gradient(180deg, blackAlpha.500 0%, blackAlpha.50 500%)'
+						'linear-gradient(180deg, blue.900 0%, blue.500 100%)'
 				}
 				p={5}
 				mb={2}

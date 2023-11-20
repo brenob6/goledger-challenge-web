@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Avatar, Box, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Progress, useBoolean } from '@chakra-ui/react'
 import { useAsset } from '../../hooks/useAsset'
 import { useRef } from 'react'
 import { api } from '../../services/api'
@@ -12,13 +12,15 @@ interface PlaylistButtonProps {
 
 export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 
-	const { data, error, isLoading } = useAsset("playlist", _key)	
+	const { data, error, isLoading: isOnRequest } = useAsset("playlist", _key)	
 	const { mutate } = useSWRConfig()
 	const navigate = useNavigate()
+	const [ isLoading, setLoading ] = useBoolean()
 
 	const menuButtonRef = useRef()
 
 	async function deletePlaylist(name: string) {
+		setLoading.on()
 		await api.post('/invoke/deleteAsset', {
 			key: {
 				"@assetType": "playlist",
@@ -26,14 +28,14 @@ export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 			}
 		}).then(async() => {
 			await mutate(["/query/search", "playlist"]);
-		})
+		}).finally(setLoading.off)
 	}
 
 	return (
 		<>
 		<Menu direction='ltr'>
 		<HStack w='full' justifyContent='right'> 
-			<MenuButton as={Box} bg='red'  ref={menuButtonRef} />
+			<MenuButton as={Box} bg='red' ref={menuButtonRef} />
 		</HStack>
 			<MenuList>
 				<MenuItem>Renomear</MenuItem>
@@ -42,11 +44,11 @@ export function PlaylistButton({ _key, isCollapsed }: PlaylistButtonProps) {
 		</Menu>
 
 		<Button 
-			isLoading={isLoading}
+			isLoading={isOnRequest || isLoading}
 			justifyContent='left' 
 			borderRadius={0}
+			hidden={isLoading}
 			leftIcon={<Avatar name={data?.name} size={"sm"}/>}
-			
 			w={!isCollapsed ? '256px' : '70'}
 			onClick={() => {
 				navigate(`/playlist/${_key}`)

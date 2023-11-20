@@ -1,4 +1,4 @@
-import { Button, Icon, Input, Modal, ModalBody, ModalContent, ModalOverlay, Stack, Text, Textarea, useDisclosure, useToast } from "@chakra-ui/react";
+import { Button, Icon, Input, Modal, ModalBody, ModalContent, ModalOverlay, Stack, Text, Textarea, useBoolean, useDisclosure, useToast } from "@chakra-ui/react";
 import { IoIosAddCircle } from "react-icons/io";
 import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
@@ -15,10 +15,12 @@ interface Inputs {
 export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps) {
 
 	const { onOpen, onClose, isOpen } = useDisclosure()
-	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+	const { register, reset, handleSubmit, formState: { errors } } = useForm<Inputs>()
 	const toast = useToast()
+	const [ isLoading, setLoading ] = useBoolean()
 
 	function onSubmit({ name, description }: Inputs) {
+		setLoading.on()
 		api.post('/invoke/createAsset', {
 			asset: [
 				{
@@ -36,6 +38,7 @@ export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps)
 				duration: 3000,
 			});
 			mutate(["/query/search","playlist"])	
+			reset()
 			onClose()
 		})
 		.catch(() => toast({
@@ -43,7 +46,7 @@ export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps)
 			status: "error",
 			description: "Ocorreu um erro =(",
 			duration: 3000
-		}))
+		})).finally(setLoading.off)
 	}
 
 	return (
@@ -67,8 +70,17 @@ export function CreatePlaylistButton({ isCollapsed }: CreatePlaylistButtonProps)
 							<Input {...register('name', {required: true})}/>
 							<Text>Descrição:</Text>
 							<Textarea {...register('description')}/>
-							<Button type="submit" colorScheme="blue">Criar Playlist</Button>
-							<Button type='reset' colorScheme="red" onClick={onClose}>Cancelar</Button>
+							<Button type="submit" isLoading={isLoading} colorScheme="blue" >Criar Playlist</Button>
+							<Button
+								type='reset'
+								isLoading={isLoading}
+								colorScheme="red"
+								onClick={() => {
+									reset()
+									onClose()
+								}}>
+									Cancelar
+							</Button>
 						</Stack>
 					</form>
 				</ModalBody>

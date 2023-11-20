@@ -5,6 +5,7 @@ import { useAsset } from "../hooks/useAsset";
 import { AlbumText } from "./AlbumText";
 import { AddMusicButton } from "./AddMusicButton";
 import { ArtistsText } from "./ArtistsText";
+import { DeleteSongButton } from "./DeleteSongButton";
 
 interface SongCardProps {
 	_key: string
@@ -13,6 +14,8 @@ interface SongCardProps {
 export function SongCard({_key }: SongCardProps) {
 
 	const { data, error, isLoading } = useAsset("song", _key)	
+
+	const songKey = !isLoading && !error && data['@key']
 
 	return(
 		<>
@@ -37,6 +40,7 @@ export function SongCard({_key }: SongCardProps) {
 			<Spacer />
 			<AlbumText _key={data?.album['@key']}/>
 			<AddMusicButton artists={data?.artists} title={data?.title}/>
+			<DeleteSongButton songKey={songKey} title={data?.title}/>
 		</Flex>
 		<Divider />
 		</>

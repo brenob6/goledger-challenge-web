@@ -9,9 +9,10 @@ import { DeleteSongButton } from "./DeleteSongButton";
 
 interface SongCardProps {
 	_key: string
+	showDelete?: boolean
 }
 
-export function SongCard({_key }: SongCardProps) {
+export function SongCard({_key, showDelete=true }: SongCardProps) {
 
 	const { data, error, isLoading } = useAsset("song", _key)	
 
@@ -40,7 +41,7 @@ export function SongCard({_key }: SongCardProps) {
 			<Spacer />
 			<AlbumText _key={data?.album['@key']}/>
 			<AddMusicButton artists={data?.artists} title={data?.title}/>
-			<DeleteSongButton songKey={songKey} title={data?.title}/>
+			{showDelete && <DeleteSongButton songKey={songKey} title={data?.title}/> }
 		</Flex>
 		<Divider />
 		</>

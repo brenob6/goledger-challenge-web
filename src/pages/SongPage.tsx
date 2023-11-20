@@ -21,7 +21,7 @@ export function SongPage() {
 		</Box>
 		<VStack alignItems='left'>
 			{!isLoading && !error && data.map((item: any, index: any) => (
-				<SongCard key={index+item['@key']} _key={item['@key']}/>
+				<SongCard showDelete={false} key={index+item['@key']} _key={item['@key']}/>
 			))}
 		</VStack>
 		</>

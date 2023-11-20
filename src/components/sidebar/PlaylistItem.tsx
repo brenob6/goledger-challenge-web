@@ -22,17 +22,17 @@ export function PlaylistItem({_key }: PlaylistItemProps) {
 			gap={3}
 			cursor='default'
 			borderRadius='md'
-			padding={2}
+			px={5}
 			_hover={{bg:'whiteAlpha.50'}}
 		>
 			<Icon as={FaMusic} boxSize={6} mx={2}/>
 			<VStack alignItems='left'>
-				<Text>
+				<Text as='b'>
 					{data?.explicit && <Icon as={BsFillExplicitFill} boxSize={3}/>}
 					{" "}
 					{data?.title}
 				</Text>
-				<ArtistsText artists={data?.artists} isLoading={isLoading}/>
+				<ArtistsText artists={data?.artists} isLoading={isLoading} />
 			</VStack>
 			<Spacer />
 			<AlbumText _key={data?.album['@key']}/>

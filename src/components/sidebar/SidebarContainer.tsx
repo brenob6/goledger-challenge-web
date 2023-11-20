@@ -1,13 +1,15 @@
-import { Flex, HStack, Icon, IconButton, Spacer, Text, useBoolean } from '@chakra-ui/react';
+import { Button, Flex, HStack, Icon, IconButton, Spacer, Text, useBoolean, useColorMode } from '@chakra-ui/react';
 import { Playlist } from './Playlist';
 import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarRightCollapseFilled } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { CreatePlaylistButton } from './CreatePlaylistButton';
 import { GiMusicalScore } from "react-icons/gi";
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 export function Sidebar() {
 
 	const [isCollapsed, setCollapse] = useBoolean()
+	const { colorMode, toggleColorMode } = useColorMode()
 	const navigate = useNavigate()
 
 	return (
@@ -47,6 +49,18 @@ export function Sidebar() {
 
 		<Playlist isCollapsed={isCollapsed} />
 		<Spacer />
+		<Button
+			onClick={toggleColorMode}
+				leftIcon={
+					<Icon as={ colorMode === 'light' ? MdDarkMode : MdLightMode}
+						boxSize='32px'
+					/>}
+			justifyContent='left'
+			borderRadius={0}
+		>
+				{!isCollapsed && "Modo " }
+				{!isCollapsed && (colorMode === 'light' ? 'Escuro' : 'Claro')}
+			</Button>
 		<CreatePlaylistButton isCollapsed={isCollapsed}/>
 		</Flex>
 	);

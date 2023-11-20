@@ -1,16 +1,16 @@
 import { Divider, Flex, Icon, Spacer, Text, VStack } from "@chakra-ui/react";
 import { FaMusic } from "react-icons/fa6"
 import { BsFillExplicitFill } from "react-icons/bs"
-import { useAsset } from "../../hooks/useAsset";
-import { AlbumText } from "../AlbumText";
-import { AddMusicButton } from "../AddMusicButton";
-import { ArtistsText } from "../ArtistsText";
+import { useAsset } from "../hooks/useAsset";
+import { AlbumText } from "./AlbumText";
+import { AddMusicButton } from "./AddMusicButton";
+import { ArtistsText } from "./ArtistsText";
 
-interface PlaylistItemProps {
+interface SongCardProps {
 	_key: string
 }
 
-export function PlaylistItem({_key }: PlaylistItemProps) {
+export function SongCard({_key }: SongCardProps) {
 
 	const { data, error, isLoading } = useAsset("song", _key)	
 

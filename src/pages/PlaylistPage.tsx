@@ -1,7 +1,7 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
-import { PlaylistItem } from "../components/sidebar/PlaylistItem";
 import { useAsset } from "../hooks/useAsset";
 import { useParams } from "react-router-dom";
+import { SongCard } from "../components/SongCard";
 
 
 export function PlaylistPage() {
@@ -24,7 +24,7 @@ export function PlaylistPage() {
 			</Box>
 		<VStack alignItems='left' px={2}>
 			{!isLoading && !error && data.songs?.map((item: any) => (
-				<PlaylistItem key={item['@key']} _key={item['@key']}/>
+				<SongCard key={item['@key']} _key={item['@key']}/>
 			))}
 		</VStack>
 		</>

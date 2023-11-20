@@ -1,7 +1,7 @@
 import { MdAlbum } from "react-icons/md"
 import { useAsset } from "../hooks/useAsset"
 import { HStack, Icon, Skeleton, Text, TextProps } from "@chakra-ui/react"
-import { Rating } from "./cards/Rating"
+import { Rating } from "./Rating"
 
 interface AlbumTitleProps {
 	_key: string

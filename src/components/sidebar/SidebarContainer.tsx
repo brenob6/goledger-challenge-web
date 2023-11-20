@@ -1,9 +1,9 @@
-import { Flex, HStack, Icon, Spacer, Text, useBoolean } from '@chakra-ui/react'
-import { Playlist } from './Playlist'
-import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarRightCollapseFilled } from "react-icons/tb"
-import { IoMdHome } from 'react-icons/io';
+import { Flex, HStack, Icon, IconButton, Spacer, Text, useBoolean } from '@chakra-ui/react';
+import { Playlist } from './Playlist';
+import { TbLayoutSidebarLeftCollapseFilled, TbLayoutSidebarRightCollapseFilled } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { CreatePlaylistButton } from './CreatePlaylistButton';
+import { GiMusicalScore } from "react-icons/gi";
 
 export function Sidebar() {
 
@@ -38,9 +38,9 @@ export function Sidebar() {
 			w='auto'
 		>
 			<Icon 
-				as={IoMdHome}
-				boxSize={10}
-				ml={3}
+				as={GiMusicalScore}
+				boxSize={8}
+				ml={4}
 			/>
 			<Text as='b' fontSize='lg' hidden={isCollapsed}>Todas as Músicas </Text>
 		</HStack>
